@@ -3,6 +3,7 @@ import { Picker } from "@react-native-picker/picker";
 import { useFormikContext } from "formik";
 
 import colors from "../../config/colors";
+import defaultStyles from "../../config/styles";
 import ErrorMessage from "./ErrorMessage";
 
 export default function AppFormPicker({ items, name, width = "100%" }) {
@@ -15,11 +16,15 @@ export default function AppFormPicker({ items, name, width = "100%" }) {
           selectedValue={values[name]}
           onValueChange={(itemValue) => setFieldValue(name, itemValue)}
         >
-          {items.map((item) => (
+          {items.map(({ label, value }) => (
             <Picker.Item
-              key={item.value}
-              label={item.label}
-              value={item.value}
+              key={value}
+              label={label}
+              value={value}
+              style={{
+                ...defaultStyles.text,
+                color: value ? colors.dark : colors.medium,
+              }}
             />
           ))}
         </Picker>
