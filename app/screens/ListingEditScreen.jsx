@@ -12,7 +12,7 @@ import {
 const categories = [
   { label: "Category", value: null },
   { label: "Clothing", value: 1 },
-  { label: "Elecronics", value: 2 },
+  { label: "Electronics", value: 2 },
   { label: "Furniture", value: 3 },
   { label: "Other", value: 4 },
 ];
