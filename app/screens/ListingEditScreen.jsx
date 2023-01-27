@@ -9,6 +9,7 @@ import {
   Screen,
   SubmitButton,
 } from "../components";
+import useLocation from "../hooks";
 
 const categories = [
   { label: "Category", value: null },
@@ -19,25 +20,31 @@ const categories = [
 ];
 
 const validationSchema = Yup.object().shape({
+  images: Yup.array().min(1, "Please select at least one image"),
   title: Yup.string().required().min(4).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
-  description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
+  description: Yup.string().label("Description"),
 });
 
 export default function ListingEditScreen() {
+  const location = useLocation();
+
   return (
     <Screen style={styles.container}>
-      <AppForm
+      <Form
         initialValues={{
+          images: [],
           title: "",
           price: "",
           description: "",
           category: null,
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(values, location)}
         validationSchema={validationSchema}
       >
+        <FormImagePicker name="images" />
+
         <FormField maxLength={255} name="title" placeholder="Title" />
 
         <FormField
@@ -59,7 +66,7 @@ export default function ListingEditScreen() {
         />
 
         <SubmitButton title="Post" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }

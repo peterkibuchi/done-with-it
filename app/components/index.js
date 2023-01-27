@@ -1,5 +1,6 @@
 export { default as Form } from "./forms/Form";
 export { default as FormField } from "./forms/FormField";
+export { default as FormImagePicker } from "./forms/FormImagePicker";
 export { default as FormPicker } from "./forms/FormPicker";
 export { default as SubmitButton } from "./forms/SubmitButton";
 
