@@ -9,7 +9,7 @@ import {
   Screen,
   SubmitButton,
 } from "../components";
-import useLocation from "../hooks";
+import { useLocation } from "../hooks";
 
 const categories = [
   { label: "Category", value: null },
