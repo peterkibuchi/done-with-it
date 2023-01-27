@@ -1,6 +1,6 @@
-export { default as AppForm } from "./forms/AppForm";
-export { default as AppFormField } from "./forms/AppFormField";
-export { default as AppFormPicker } from "./forms/AppFormPicker";
+export { default as Form } from "./forms/Form";
+export { default as FormField } from "./forms/FormField";
+export { default as FormPicker } from "./forms/FormPicker";
 export { default as SubmitButton } from "./forms/SubmitButton";
 
 export { default as ListItem } from "./lists/ListItem";

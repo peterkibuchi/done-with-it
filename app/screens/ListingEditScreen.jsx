@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import {
-  AppForm,
-  AppFormField,
-  AppFormPicker,
+  Form,
+  FormField,
+  FormImagePicker,
+  FormPicker,
   Screen,
   SubmitButton,
 } from "../components";
@@ -37,9 +38,9 @@ export default function ListingEditScreen() {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField maxLength={255} name="title" placeholder="Title" />
+        <FormField maxLength={255} name="title" placeholder="Title" />
 
-        <AppFormField
+        <FormField
           keyboardType="numeric"
           maxLength={8}
           name="price"
@@ -47,9 +48,9 @@ export default function ListingEditScreen() {
           width={120}
         />
 
-        <AppFormPicker items={categories} name="category" width="50%" />
+        <FormPicker items={categories} name="category" width="50%" />
 
-        <AppFormField
+        <FormField
           maxLength={255}
           multiline
           name="description"
