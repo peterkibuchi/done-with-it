@@ -6,7 +6,7 @@ import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 import ErrorMessage from "./ErrorMessage";
 
-export default function AppFormPicker({ items, name, width = "100%" }) {
+export default function FormPicker({ items, name, width = "100%" }) {
   const { errors, setFieldValue, touched, values } = useFormikContext();
 
   return (
