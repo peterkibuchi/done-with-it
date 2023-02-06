@@ -1,22 +1,27 @@
-import { useFormikContext } from "formik";
+import { FormikContextType, FormikValues, useFormikContext } from "formik";
 
 import ImageInputList from "../ImageInputList";
 import ErrorMessage from "./ErrorMessage";
 
-export default function FormImagePicker({ name }) {
-  const { errors, setFieldValue, touched, values } = useFormikContext();
+interface FormPickerProps {
+  name: string;
+}
+
+export default function FormImagePicker({ name }: FormPickerProps) {
+  const { errors, setFieldValue, touched, values } =
+    useFormikContext<FormikContextType<FormikValues>>();
   const imageUris = values[name];
 
-  const handleAddImage = (uri) => {
+  const handleAddImage = (uri: string) => {
     setFieldValue(name, [...imageUris, uri]);
   };
 
-  const handleChangeImages = (images) => {
+  const handleChangeImages = (images: string[]) => {
     setFieldValue(name, images);
   };
 
-  const handleRemoveImage = (uri) => {
-    const newImages = imageUris.filter((imageUri) => imageUri !== uri);
+  const handleRemoveImage = (uri: string) => {
+    const newImages = imageUris.filter((imageUri: string) => imageUri !== uri);
     setFieldValue(name, newImages);
   };
 

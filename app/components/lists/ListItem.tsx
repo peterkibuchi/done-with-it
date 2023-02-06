@@ -1,9 +1,20 @@
+import { ReactNode } from "react";
 import { Image, StyleSheet, TouchableHighlight, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import colors from "../../config/colors";
 import AppText from "../AppText";
+
+interface ListItemProps {
+  IconComponent?: ReactNode;
+  image?: number;
+  onPress?: () => void;
+  renderRightActions?: () => ReactNode;
+  showChevrons?: boolean;
+  subtitle?: string;
+  title: string;
+}
 
 export default function ListItem({
   IconComponent,
@@ -12,7 +23,7 @@ export default function ListItem({
   subtitle,
   onPress,
   renderRightActions,
-}) {
+}: ListItemProps) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.extralight} onPress={onPress}>

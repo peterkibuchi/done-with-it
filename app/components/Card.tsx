@@ -1,24 +1,43 @@
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-export default function Card({
-  image,
-  title = "Title",
-  subtitle = "Subtitle",
-}) {
-  return (
-    <View style={styles.card}>
-      <Image source={image} style={styles.image} />
+interface CardProps {
+  imageUrl: string;
+  onPress: () => void;
+  subtitle: string;
+  thumbnailUrl?: string;
+  title: string;
+}
 
-      <View style={styles.detailsContainer}>
-        <AppText style={styles.title} numberOfLines={1}>
-          {title}
-        </AppText>
-        <AppText style={styles.subtitle}>{subtitle}</AppText>
+export default function Card({
+  imageUrl,
+  thumbnailUrl,
+  title,
+  subtitle,
+  onPress,
+}: CardProps) {
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.card}>
+        <Image
+          uri={imageUrl}
+          preview={{ uri: thumbnailUrl }}
+          tint="light"
+          style={styles.image}
+        />
+
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title} numberOfLines={1}>
+            {title}
+          </AppText>
+
+          <AppText style={styles.subtitle}>{subtitle}</AppText>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 

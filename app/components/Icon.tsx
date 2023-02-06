@@ -1,12 +1,20 @@
 import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ComponentProps } from "react";
+
+interface IconProps {
+  backgroundColor?: string;
+  iconColor?: string;
+  name: ComponentProps<typeof MaterialCommunityIcons>["name"];
+  size?: number;
+}
 
 export default function Icon({
-  name = "name",
-  size = 40,
   backgroundColor = "#000",
   iconColor = "#fff",
-}) {
+  name,
+  size = 40,
+}: IconProps) {
   return (
     <View
       style={{

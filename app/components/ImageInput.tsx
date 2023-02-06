@@ -11,7 +11,17 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-export default function ImageInput({ imageUri, changeImages, removeImage }) {
+interface ImageInputProps {
+  imageUri?: string;
+  changeImages: (images: ImagePicker.ImagePickerAsset[]) => void;
+  removeImage: (imageUri: string) => void;
+}
+
+export default function ImageInput({
+  imageUri,
+  changeImages,
+  removeImage,
+}: ImageInputProps) {
   useEffect(() => {
     requestPermission();
   }, []);

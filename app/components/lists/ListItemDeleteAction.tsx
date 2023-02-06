@@ -3,7 +3,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
-export default function ListItemDeleteAction({ onPress }) {
+interface ListItemDeleteActionProps {
+  onPress: () => void;
+}
+
+export default function ListItemDeleteAction({
+  onPress,
+}: ListItemDeleteActionProps) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>

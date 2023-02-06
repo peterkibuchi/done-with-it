@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
+import listingsApi from "../api/listings";
 import {
   Form,
   FormField,
@@ -10,6 +12,7 @@ import {
   SubmitButton,
 } from "../components";
 import { useLocation } from "../hooks";
+import UploadScreen from "./UploadScreen";
 
 const categories = [
   { label: "Category", value: null },
@@ -27,8 +30,53 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().label("Description"),
 });
 
+export interface Listing {
+  category: {
+    backgroundColor: string;
+    icon: string;
+    label: string;
+    value: number;
+  };
+  description: string;
+  imageUris: string[];
+  location: Location | undefined;
+  price: string;
+  title: string;
+}
+
+export interface Location {
+  latitude: number;
+  longitude: number;
+}
+
+export interface Category {
+  backgroundColor: string;
+  icon: string;
+  label: string;
+  value: number;
+}
+
 export default function ListingEditScreen() {
+  const [progress, setProgress] = useState(0);
+  const [uploadScreenVisible, setUploadScreenVisible] = useState(false);
+
   const location = useLocation();
+
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
+    setUploadScreenVisible(true);
+    const response = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => setProgress(progress)
+    );
+
+    if (!response.ok) {
+      setUploadScreenVisible(false);
+      return alert("Could not save the listing.");
+    }
+
+    resetForm();
+  };
 
   return (
     <Screen style={styles.container}>
@@ -40,7 +88,7 @@ export default function ListingEditScreen() {
           description: "",
           category: null,
         }}
-        onSubmit={(values) => console.log(values, location)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
@@ -67,6 +115,12 @@ export default function ListingEditScreen() {
 
         <SubmitButton title="Post" />
       </Form>
+
+      <UploadScreen
+        onDone={() => setUploadScreenVisible(false)}
+        progress={progress}
+        visible={uploadScreenVisible}
+      />
     </Screen>
   );
 }
