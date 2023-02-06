@@ -1,8 +1,16 @@
+import * as ExpoLocation from "expo-location";
 import { useEffect, useState } from "react";
-import * as Location from "expo-location";
 
-export default function useLocation() {
-  const [location, setLocation] = useState();
+import { Location } from "../screens/ListingEditScreen";
+
+interface LocationOutput {
+  location: Location | undefined;
+  error: Object | undefined;
+}
+
+export default function useLocation(): LocationOutput {
+  const [location, setLocation] = useState<Location>();
+  const [error, setError] = useState();
 
   useEffect(() => {
     getLocation();
@@ -10,18 +18,19 @@ export default function useLocation() {
 
   const getLocation = async () => {
     try {
-      const { granted } = await Location.requestForegroundPermissionsAsync();
+      const { granted } =
+        await ExpoLocation.requestForegroundPermissionsAsync();
       if (!granted) return;
 
       const {
         coords: { latitude, longitude },
-      } = await Location.getLastKnownPositionAsync();
+      } = await ExpoLocation.getLastKnownPositionAsync();
 
       setLocation({ latitude, longitude });
     } catch (error) {
-      console.log("Error", error);
+      setError(error);
     }
   };
 
-  return location;
+  return { location, error };
 }
