@@ -1,9 +1,14 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-import colors from "../config/colors";
+import { colors } from "../config";
 
-export default function NewListingButton({ onPress }: { onPress: () => void }) {
+interface NewListingButtonProps {
+  onPress: () => void;
+}
+
+export default function NewListingButton({ onPress }: NewListingButtonProps) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>

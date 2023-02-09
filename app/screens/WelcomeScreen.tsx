@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 
 import { AppButton } from "../components";
-import routes from "../navigation/routes";
+import { routes } from "../config";
 
 export default function WelcomeScreen({ navigation }) {
   return (

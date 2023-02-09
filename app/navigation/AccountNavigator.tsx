@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { routes } from "../config";
 import { AccountScreen, MessagesScreen } from "../screens";
-import routes from "./routes";
 
 const Stack = createStackNavigator();
 

@@ -1,3 +1,5 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 import { useEffect } from "react";
 import {
   Alert,
@@ -6,10 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../config/colors";
+import { colors } from "../config";
 
 interface ImageInputProps {
   imageUri?: string;
@@ -32,9 +32,9 @@ export default function ImageInput({
     if (!granted) alert("You need to enable permission to access the library.");
   };
 
-  const handlePress = () => {
+  const handlePress = async () => {
     if (!imageUri) {
-      selectImages();
+      await selectImages();
     } else {
       Alert.alert("Delete", "Are you sure you want to delete this image?", [
         { text: "Yes", onPress: () => removeImage(imageUri) },

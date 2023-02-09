@@ -1,9 +1,8 @@
-import { StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useFormikContext } from "formik";
+import { StyleSheet, View } from "react-native";
 
-import colors from "../../config/colors";
-import defaultStyles from "../../config/styles";
+import { colors, defaultStyles } from "../../config";
 import ErrorMessage from "./ErrorMessage";
 
 export default function FormPicker({ items, name, width = "100%" }) {

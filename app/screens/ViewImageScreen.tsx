@@ -1,7 +1,7 @@
-import { Image, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image, StyleSheet, View } from "react-native";
 
-import colors from "../config/colors";
+import { colors } from "../config";
 
 export default function ViewImageScreen() {
   return (

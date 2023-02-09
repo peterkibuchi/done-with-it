@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
-import colors from "../config/colors";
+import { colors } from "../config";
 import AppText from "./AppText";
 
 interface CardProps {

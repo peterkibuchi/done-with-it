@@ -1,4 +1,4 @@
-import { FormikContextType, FormikValues, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 import { TextInputProps } from "react-native";
 
 import AppTextInput from "../AppTextInput";
@@ -15,7 +15,7 @@ export default function FormField({
   ...otherProps
 }: FormFieldProps) {
   const { errors, setFieldTouched, setFieldValue, touched, values } =
-    useFormikContext<FormikContextType<FormikValues>>();
+    useFormikContext();
 
   return (
     <>

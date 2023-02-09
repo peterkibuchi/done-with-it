@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Text, TextInputProps } from "react-native";
 
-import defaultStyles from "../config/styles";
+import { defaultStyles } from "../config";
 
 interface AppTextProps extends TextInputProps {
   children: ReactElement | string;

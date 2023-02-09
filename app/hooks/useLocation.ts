@@ -10,7 +10,7 @@ interface LocationOutput {
 
 export default function useLocation(): LocationOutput {
   const [location, setLocation] = useState<Location>();
-  const [error, setError] = useState();
+  const [error, setError] = useState({});
 
   useEffect(() => {
     getLocation();
@@ -22,13 +22,15 @@ export default function useLocation(): LocationOutput {
         await ExpoLocation.requestForegroundPermissionsAsync();
       if (!granted) return;
 
-      const {
-        coords: { latitude, longitude },
-      } = await ExpoLocation.getLastKnownPositionAsync();
-
-      setLocation({ latitude, longitude });
-    } catch (error) {
-      setError(error);
+      const result = await ExpoLocation.getLastKnownPositionAsync();
+      if (result) {
+        const {
+          coords: { latitude, longitude },
+        } = result;
+        setLocation({ latitude, longitude });
+      }
+    } catch (err: any) {
+      setError(err);
     }
   };
 

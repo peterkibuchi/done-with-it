@@ -2,7 +2,7 @@ import { useNetInfo } from "@react-native-community/netinfo";
 import Constants from "expo-constants";
 import { StyleSheet, View } from "react-native";
 
-import colors from "../config/colors";
+import { colors } from "../config";
 import AppText from "./AppText";
 
 export default function OfflineNotice() {

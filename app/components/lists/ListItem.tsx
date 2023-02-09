@@ -1,9 +1,9 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReactNode } from "react";
 import { Image, StyleSheet, TouchableHighlight, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import colors from "../../config/colors";
+import { colors } from "../../config";
 import AppText from "../AppText";
 
 interface ListItemProps {

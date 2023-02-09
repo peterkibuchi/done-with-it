@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import listingsApi from "../api/listings";
+import { listingsApi } from "../api";
 import {
   Form,
   FormField,
