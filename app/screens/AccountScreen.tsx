@@ -59,7 +59,7 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
         <ListItem
           title={user.name}
           subtitle={user.email}
-          image={require("../assets/mosh.jpg")}
+          image={require("../assets/user.png")}
         />
       </View>
 
