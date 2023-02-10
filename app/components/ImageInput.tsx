@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { colors } from "../config";
+import { logger } from "../utils";
 
 interface ImageInputProps {
   imageUri?: string;
@@ -52,7 +53,7 @@ export default function ImageInput({
 
       if (!canceled) changeImages(assets);
     } catch (error) {
-      console.log("Error reading images", error);
+      logger.log(error);
     }
   };
 

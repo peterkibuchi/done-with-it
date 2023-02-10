@@ -13,6 +13,7 @@ import {
   SubmitButton,
 } from "../components";
 import { useApi } from "../hooks";
+import { logger } from "../utils";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -30,10 +31,11 @@ export default function RegisterScreen() {
     const result = await registerApi.request(userInfo);
 
     if (!result.ok) {
-      if (result.data) setError(result.data.error);
-      else {
+      if (result.data) {
+        setError(result.data.error);
+        logger.log(result.data.error);
+      } else {
         setError("An unexpected error occured.");
-        console.log(result);
       }
       return;
     }

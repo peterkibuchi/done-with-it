@@ -4,12 +4,11 @@ import React, { useState } from "react";
 
 import { AuthContext, authStorage } from "./app/auth";
 import { OfflineNotice } from "./app/components";
-import {
-  AppNavigator,
-  AuthNavigator,
-  navigationTheme,
-  rootNavigation,
-} from "./app/navigation";
+import { AppNavigator, AuthNavigator, navigationTheme } from "./app/navigation";
+import { navigationRef } from "./app/navigation/rootNavigation";
+import { logger } from "./app/utils";
+
+logger.start();
 
 export default function App() {
   const [user, setUser] = useState();
@@ -21,7 +20,7 @@ export default function App() {
   };
 
   const handleLoadingError = () => {
-    throw new Error("App loading error");
+    logger.log(new Error("App loading error"));
   };
 
   const handleLoadingFinish = () => setAppIsReady(true);
@@ -38,10 +37,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
-      <NavigationContainer
-        ref={rootNavigation.navigationRef}
-        theme={navigationTheme}
-      >
+      <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
