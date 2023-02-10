@@ -1,9 +1,7 @@
 import { createRef } from "react";
 
-const navigationRef = createRef();
+export const navigationRef = createRef();
 
-const navigate = (name: string, params: Object) => {
+export const navigate = (name: string, params: Object) => {
   navigationRef.current?.navigate(name, params);
 };
-
-export default { navigationRef, navigate };

@@ -5,14 +5,15 @@ import { Platform } from "react-native";
 
 import { expoPushTokensApi } from "../api";
 import { routes } from "../config";
-import { rootNavigation } from "../navigation";
+import { navigate } from "../navigation/rootNavigation";
+import { logger } from "../utils";
 
 export default function useNotifications() {
   useEffect(() => {
     registerForPushNotifications();
 
     Notifications.addNotificationReceivedListener(() => {
-      rootNavigation.navigate(routes.ACCOUNT_TAB_NAV, {});
+      navigate(routes.ACCOUNT_TAB_NAV, {});
     });
   }, []);
 
@@ -24,7 +25,7 @@ export default function useNotifications() {
       const { data: pushToken } = await Notifications.getExpoPushTokenAsync();
       await expoPushTokensApi.register(pushToken);
     } catch (error) {
-      throw new Error("Error getting push token");
+      logger.log(new Error("Error getting push token"));
     }
 
     if (Platform.OS === "android") {
