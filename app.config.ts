@@ -1,0 +1,46 @@
+import { ConfigContext, ExpoConfig } from "@expo/config";
+
+const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
+  name: "done-with-it",
+  slug: "DoneWithIt",
+  version: "1.0.0",
+  orientation: "portrait",
+  icon: "./app/assets/icon.png",
+  userInterfaceStyle: "light",
+  splash: {
+    image: "./app/assets/splash.png",
+    resizeMode: "cover",
+    backgroundColor: "#e63c4b",
+  },
+  updates: {
+    fallbackToCacheTimeout: 0,
+  },
+  assetBundlePatterns: ["**/*"],
+  ios: {
+    supportsTablet: true,
+  },
+  android: {
+    adaptiveIcon: {
+      foregroundImage: "./app/assets/adaptive-icon.png",
+      backgroundColor: "#FFFFFF",
+    },
+  },
+  web: {
+    favicon: "./app/assets/favicon.png",
+  },
+  extra: {
+    bugsnag: {
+      apiKey: process.env.BUGSNAG_API_KEY,
+    },
+  },
+  hooks: {
+    postPublish: [
+      {
+        file: "@bugsnag/expo/hooks/post-publish.js",
+        config: {},
+      },
+    ],
+  },
+});
+
+export default defineConfig;

@@ -3,5 +3,5 @@
     "jsx": "react-native"
   },
   "extends": "expo/tsconfig.base",
-  "include": ["App.tsx", "app.json", "app", ".eslintrc.js"]
+  "include": ["App.tsx", "app.config.ts", "app", ".eslintrc.js"]
 }
